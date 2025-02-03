@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Para el amor de mi vida</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffb6c1, #ffd1dc);
+            font-family: 'Arial', sans-serif;
+        }
+        .envelope {
+            background: #fff;
+            width: 300px;
+            height: 200px;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+        .envelope.open {
+            transform: rotateX(180deg);
+        }
+        .front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f8f8f8;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotateX(180deg);
+            backface-visibility: hidden;
+        }
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            backface-visibility: hidden;
+        }
+        .heart {
+            color: #ff69b4;
+            font-size: 40px;
+        }
+        .message {
+            display: none;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 80%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .mensaje-especial {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .poesia {
+            font-style: italic;
+            color: #666;
+            margin: 20px 0;
+        }
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #ff8bc7;
+        }
+        .monkey {
+            font-size: 50px;
+            animation: dance 1s infinite;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        @keyframes dance {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-10deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(10deg); }
+        }
+        .monkey-container {
+            margin: 20px 0;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="front">
+            <div class="heart">♥</div>
+        </div>
+        <div class="back">
+            <div class="heart">♥</div>
+            <p>Toca para abrir</p>
+        </div>
+    </div>
+
+    <div class="message" id="message">
+        <div class="monkey-container">
+            <span class="monkey">🐒</span>
+            <span class="monkey" style="animation-delay: 0.2s">🐵</span>
+        </div>
+
+        <h2>Mi amor:</h2>
+        
+        <div class="mensaje-especial">
+            Cada día a tu lado es un regalo que atesoro con todo mi corazón. Desde que nuestros caminos se cruzaron, mi vida se llenó de una luz especial que solo tú puedes dar. Eres el amor de mi vida, mi compañera, mi confidente, mi todo.
+        </div>
+
+        <div class="poesia">
+            En el lienzo del tiempo dibujaste<br>
+            con tus sonrisas mi felicidad,<br>
+            en cada amanecer me enseñaste<br>
+            el verdadero significado de amar.<br><br>
+            
+            Eres mi presente y mi futuro,<br>
+            el amor más puro que pude encontrar,<br>
+            contigo todo es más seguro,<br>
+            y mi corazón no deja de brillar.
+        </div>
+
+        <div class="mensaje-especial">
+            Gracias por ser mi compañera de vida, por compartir conmigo cada momento, cada sueño y cada aventura. Te amo más allá de las palabras y quiero preguntarte...
+        </div>
+
+        <div class="monkey-container">
+            <span class="monkey" style="animation-delay: 0.4s">🐒</span>
+            <span class="monkey" style="animation-delay: 0.6s">🐵</span>
+        </div>
+
+        <h3>¿Quieres ser mi San Valentín?</h3>
+        
+        <button onclick="showHeart()">¡Sí, acepto!</button>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.querySelector('.envelope').classList.add('open');
+            setTimeout(() => {
+                document.querySelector('.message').style.display = 'block';
+                document.querySelector('.envelope').style.display = 'none';
+            }, 1000);
+        }
+
+        function showHeart() {
+            const message = document.querySelector('.message');
+            message.innerHTML += `
+                <div style="margin-top: 20px;">
+                    <div style="font-size: 100px; color: #ff69b4; animation: pulse 1s infinite">♥</div>
+                    <div class="monkey-container">
+                        <span class="monkey" style="animation-delay: 0.2s">🐒</span>
+                        <span class="monkey" style="animation-delay: 0.4s">🐵</span>
+                        <span class="monkey" style="animation-delay: 0.6s">🐒</span>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
